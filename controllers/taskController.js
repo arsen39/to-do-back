@@ -52,7 +52,9 @@ module.exports.delete = async (req, res, next) => {
 
 module.exports.get = async (req, res, next) => {
   try {
-    const tasks = await Task.findAll();
+    const tasks = await Task.findAll({order: [
+      ['deadline', 'ASC'],
+  ],});
 
     if (!tasks) {
       return next(createError(400));
